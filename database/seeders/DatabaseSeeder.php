@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,6 +25,7 @@ class DatabaseSeeder extends Seeder
                                 ]);
 
          \App\Models\User::factory(10)->create();
+         User::create(['name'=>'admin', 'email'=>'admin@admin', 'password'=> Hash::make('admin'), 'email_verified_at'=> now(), 'id_role' => env('ROLE_ADMIN')]);
 
 //         \App\Models\User::factory()->create([
 //             'name' => 'Test User',
