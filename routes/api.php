@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/attractions', [AttractionController::class, 'store']);
-Route::get('/attractions/{attraction}', [AttractionController::class, 'show']);
-Route::patch('/attractions/{attraction}', [AttractionController::class, 'update']);
+Route::group(['prefix' => 'attractions', 'controller' => AttractionController::class], function () {
+    Route::get('/', 'index');
+    Route::post('/', 'store');
+    Route::get('/{attraction}', 'show');
+    Route::post('/{attraction}', 'update');
+});
+
