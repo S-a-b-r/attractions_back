@@ -26,9 +26,9 @@ class StoreRequest extends FormRequest
         return [
             'title'=>'required|string|max:255',
             'description'=>'string',
-            'id_creator'=>'required|exists:users,id',
             'latitude'=>'required|numeric',
             'longitude'=>'required|numeric',
+            'images'=>'nullable|array'
         ];
     }
 }
