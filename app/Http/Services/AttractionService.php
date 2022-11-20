@@ -28,8 +28,11 @@ class AttractionService
                 $status = 'wiki_not_found';
             }
 
-            $images = $data['images'];
-            unset($data['images']);
+            if(isset($data['images'])){
+                $images = $data['images'];
+                unset($data['images']);
+            }
+
 
             $attraction = Attraction::firstOrCreate($data);
 
