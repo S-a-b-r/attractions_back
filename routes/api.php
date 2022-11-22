@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::group(['prefix' => 'attractions', 'middleware'=>'auth:sanctum', 'controller' => AttractionController::class], function () {
+Route::group(['prefix' => 'attractions', 'controller' => AttractionController::class], function () {
     Route::get('/', 'index');
-    Route::post('/', 'store');
+    Route::middleware('auth:sanctum')->post('/', 'store');
     Route::get('/{attraction}', 'show');
-    Route::post('/{attraction}', 'update');
+    Route::middleware('auth:sanctum')->post('/{attraction}', 'update');
 });
 Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/get', function (){
