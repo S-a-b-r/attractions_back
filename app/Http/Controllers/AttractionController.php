@@ -23,14 +23,17 @@ class AttractionController extends BaseAttractionController
         return response()->json($result);
     }
 
-    public function show(Attraction $attraction)
+    public function show($attraction)
     {
+        $attraction = Attraction::where('id', $attraction)->first();
         return new AttractionResource($attraction);
     }
 
-    public function update(Attraction $attraction, UpdateRequest $request)
+    public function update($attraction, UpdateRequest $request)
     {
+        $attraction = Attraction::where('id', $attraction)->first();
         $data = $request->validated();
+        unset($data['remember_token']);
         $attraction->update($data);
 
         return new AttractionResource($attraction);

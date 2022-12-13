@@ -17,7 +17,7 @@ class AttractionResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'description' => $this->title,
+            'description' => $this->description,
             'latitude' => $this->latitude,
             'longitude' => $this->longitude,
             'wiki_info' => $this->wiki_info,
