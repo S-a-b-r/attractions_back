@@ -24,6 +24,7 @@ class StoreRequest extends FormRequest
     public function rules()
     {
         return [
+            'remember_token'=>'required|string|exists:users,remember_token',
             'title'=>'required|string|max:255',
             'description'=>'string',
             'latitude'=>'required|numeric',

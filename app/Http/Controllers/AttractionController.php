@@ -6,8 +6,6 @@ use App\Http\Requests\Attraction\StoreRequest;
 use App\Http\Requests\Attraction\UpdateRequest;
 use App\Http\Resources\AttractionResource;
 use App\Models\Attraction;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
 
 class AttractionController extends BaseAttractionController
 {

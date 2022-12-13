@@ -5,6 +5,7 @@ namespace App\Http\Services;
 use App\Http\Resources\AttractionResource;
 use App\Models\Attraction;
 use App\Models\Image;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,7 +13,9 @@ class AttractionService
 {
     public function store($data)
     {
-        $data['id_creator'] = auth()->user()->id;
+        $user = User::where('remember_token',$data['remember_token'])->first();
+        $data['id_creator'] = $user->id;
+        unset($data['remember_token']);
 
         try{
             $wikiUrl = 'https://ru.wikipedia.org/';

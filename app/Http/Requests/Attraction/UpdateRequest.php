@@ -24,6 +24,7 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
+            'remember_token'=>'required|string|exists:users,remember_token',
             'title'=>'string|max:255',
             'description'=>'string',
             'latitude'=>'numeric',
