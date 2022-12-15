@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AttractionResource extends JsonResource
+class AttractionWithCommentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -23,6 +23,8 @@ class AttractionResource extends JsonResource
             'wiki_info' => $this->wiki_info,
             'wiki_info_link' => $this->wiki_info_link,
             'images' => ImageResource::collection($this->images),
+            'comments' => CommentResource::collection($this->comments),
+            'is_published' => $this->is_published,
             'created_at' => $this->created_at
         ];
     }

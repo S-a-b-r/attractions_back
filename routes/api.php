@@ -24,7 +24,11 @@ Route::group(['prefix' => 'attractions', 'controller' => AttractionController::c
     Route::post('/', 'store');
     Route::get('/{attraction}', 'show');
     Route::post('/{attraction}', 'update');
+    Route::post('/{attraction}/comments', 'addComment');
 });
+
+Route::post('/comments/{idComment}/delete', [\App\Http\Controllers\CommentController::class, 'delete']);
+
 
 Route::post('/search', [\App\Http\Controllers\SearchController::class, 'search']);
 

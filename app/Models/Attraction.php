@@ -14,4 +14,8 @@ class Attraction extends Model
     public function images(){
         return $this->hasMany(Image::class, 'id_attraction','id');
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class,'id_attraction', 'id');
+    }
 }
