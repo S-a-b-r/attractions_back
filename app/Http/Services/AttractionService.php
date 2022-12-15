@@ -36,7 +36,6 @@ class AttractionService
                 unset($data['images']);
             }
 
-
             $attraction = Attraction::firstOrCreate($data);
 
             if(isset($images)) {

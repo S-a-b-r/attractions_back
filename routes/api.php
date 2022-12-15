@@ -26,6 +26,8 @@ Route::group(['prefix' => 'attractions', 'controller' => AttractionController::c
     Route::post('/{attraction}', 'update');
 });
 
+Route::post('/search', [\App\Http\Controllers\SearchController::class, 'search']);
+
 Route::post('/login', [\App\Http\Controllers\AuthController::class, 'login']);
 Route::post('/logout', [\App\Http\Controllers\AuthController::class, 'logout']);
 Route::post('/register', [\App\Http\Controllers\AuthController::class, 'register']);

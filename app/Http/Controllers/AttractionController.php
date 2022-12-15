@@ -6,13 +6,30 @@ use App\Http\Requests\Attraction\StoreRequest;
 use App\Http\Requests\Attraction\UpdateRequest;
 use App\Http\Resources\AttractionResource;
 use App\Models\Attraction;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class AttractionController extends BaseAttractionController
 {
-    public function index()
+    public function index(Request $request)
     {
-        $attractions = Attraction::where('is_published', '=', '1')->paginate(5);
-        return AttractionResource::collection($attractions);
+        $data = $request->validate([
+                                       'filter'=>'boolean',
+                                       'sorted'=>'boolean',
+                                       'remember_token'=>'string'
+                                   ]);
+        $query = Attraction::where('is_published', '=', '1');
+
+        if(isset($data['filter']) && $data['filter'] == true){
+            $user = User::where('remember_token', $data['remember_token'])->first();
+            $query = $query->where('id_creator', $user->id);
+        }
+
+        if(isset($data['sorted'])) {
+            $query = $data['sorted']?$query->orderBy('title'):$query->orderBy('created_at', 'desc');
+        }
+
+        return AttractionResource::collection($query->paginate(5));
     }
 
     public function store(StoreRequest $request)
