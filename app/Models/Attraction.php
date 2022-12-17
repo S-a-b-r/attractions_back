@@ -11,6 +11,10 @@ class Attraction extends Model
     protected $guarded = false;
     protected $table='attractions';
 
+    public function creator(){
+        return $this->belongsTo(User::class, 'id_creator', 'id');
+    }
+
     public function images(){
         return $this->hasMany(Image::class, 'id_attraction','id');
     }

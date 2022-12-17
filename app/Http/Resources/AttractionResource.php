@@ -23,6 +23,7 @@ class AttractionResource extends JsonResource
             'wiki_info' => $this->wiki_info,
             'wiki_info_link' => $this->wiki_info_link,
             'images' => ImageResource::collection($this->images),
+            'creator' => $this->creator->name,
             'created_at' => $this->created_at
         ];
     }

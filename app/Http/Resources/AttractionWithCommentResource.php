@@ -25,6 +25,7 @@ class AttractionWithCommentResource extends JsonResource
             'images' => ImageResource::collection($this->images),
             'comments' => CommentResource::collection($this->comments),
             'is_published' => $this->is_published,
+            'creator' => $this->creator->name,
             'created_at' => $this->created_at
         ];
     }
